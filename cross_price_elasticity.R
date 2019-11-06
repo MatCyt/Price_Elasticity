@@ -114,4 +114,4 @@ cross_results = cross_results %>%
 cross_results
 
 # Save the output
-# write.csv(cross_results, 'cross_price_elasticity.csv')
+# write.csv(cross_results, './data/cross_price_elasticity.csv')
