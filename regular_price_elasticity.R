@@ -1,7 +1,11 @@
-# Calculating Reguler (Own) Price Elasticity for any given SKU
+# Calculating Regular (Own) Price Elasticity for any given SKU
+
+
 
 ### LOAD LIBRARIES ----------------------------------------------
 pacman::p_load(tidyverse, data.table)
+
+
 
 ### LOAD DATA ----------------------------------------------
 
@@ -97,6 +101,8 @@ df_own_price_elasticity = models_results %>%
          significance = ifelse(price_p_value < 0.2, 'significant', 'not significant')) %>% # TODO properly adjust the condition here
   arrange(desc(mean_sales))
 
+# final output
 df_own_price_elasticity
 
-write_csv(df_price_elasticity, './data/own_price_elasticity.csv')
+# save the output
+# write_csv(df_own_price_elasticity, './data/own_price_elasticity.csv')
