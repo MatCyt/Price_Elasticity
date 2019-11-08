@@ -122,4 +122,6 @@ df_cpe2 %>%
                 full_width = F,
                 font_size = 20)
 
+formattable(df_cpe2)
+
 # write.csv(df_cpe2, './data/cross_price_elasticity_output.csv', row.names = F)
