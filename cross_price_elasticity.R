@@ -26,7 +26,7 @@ length(unique(df_base$SKU))
 
 ### CAST DATA ----------------------------------------------
 # we need to dcast/pivot data to change it into model appropriate format
-df_casted = dcast(setDT(df_base), SalesDate ~ SKU, value.var = c('sum_value', 'sum_units', 'average_price'))
+df_casted = data.table::dcast(setDT(df_base), SalesDate ~ SKU, value.var = c('sum_value', 'sum_units', 'average_price'))
 
 sku_list = unique(df_base$SKU)
 
@@ -93,25 +93,20 @@ for (sku in sku_list) {
   
 }
 
-# nearly final result
-cross_results
-
-
 # SET SAME ORDER OF COLUMNS AND ROWS --------------------------------------
 # to read the output easier
 
 # change the naming order to facilitate arrangement of columns
-colnames(cross_results)[2:length(colnames(cross_results))] = paste(sub("^[^_]*_[^_]*_", "", colnames(cross_results)), 'average_price', sep = '_')
-
+colnames(cross_results) = colnames(cross_results) %>%
+  str_remove(., 'average_price_') %>%
+  paste(., 'price', sep = '_')
+  
 # transform into final format
 cross_results = cross_results %>%
-  arrange(model) %>%
-  select(sort(names(.))) %>%
-  select(model, ends_with('price')) %>%
-  select(-model_average_price)
+  arrange(model_price)
 
 # final output
 cross_results
 
 # Save the output
-# write.csv(cross_results, './data/cross_price_elasticity.csv')
+write.csv(cross_results, './data/cross_price_elasticity.csv')
