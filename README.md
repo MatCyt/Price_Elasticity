@@ -95,6 +95,19 @@ We could break products into four groups identifying different pricing strategie
 DESCRIBE GROUPS
 
 ### Materials
-Here you can find links I found usefull along the way
+Here you can find some links and materials I found usefull along the way:
 
-INSERT LINKS
+Code | Baseline - simple step by step price elasticity calculation with R:
+http://www.salemmarafi.com/code/price-elasticity-with-r/
+
+Code | Price elasticity in R with non-linear relations included:
+https://www.r-bloggers.com/food-for-regression-using-sales-data-to-identify-price-elasticity/
+
+Theory | Price elasticity limitations and things to keep in mind during interpretation:
+http://www.cornerstonecapabilities.com/what-you-must-know-about-pricing-elasticity-and-the-danger-it-may-bring/
+
+Theory | Cross price elasticity and cannibalization
+https://www.ashokcharan.com/Marketing-Analytics/~pm-cannibalization.php
+
+Longer theory | Whole chapter on pricing studies and different method / models:
+https://www.ashokcharan.com/Marketing-Analytics/~pr-what-price.php
