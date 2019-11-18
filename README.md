@@ -44,34 +44,78 @@ Price architecture - showing the variance of price across each SKU. This could b
 Code for all of the visualizations can be found in visualize_results.R  
   
 #### Price trend
-This simple graph shows us price variations across different products in a given time. We can easily see different price levels grouped across products, bigger discounts or regular price changes.  
+This simple graph shows us price history across different products in a given time. We can easily see different price levels grouped across products, bigger discounts or regular price changes.  
   
 <p align="center">
   <img src="https://github.com/MatCyt/Price_Elasticity_R/blob/master/charts/price_trend.png" alt="Price Trend"
-       width="600" height="450">
+       width="600" height="320">
  </p>
   
     
 #### Price architecture
-here we can easily see the variance in price for a given sku over time
-this could also be replaced by promo price, regular price and average price
-
-INSERT GRAPH HERE
-
+Here we can see the price variance and range for a given SKU - this could be potentially replaced by showing the regular, promo and average price.
+  
+<p align="center">
+  <img src="https://github.com/MatCyt/Price_Elasticity_R/blob/master/charts/price_architecture.png" alt="Price Architecture"
+       width="600" height="400">
+ </p>
+  
+    
 ### Own price elasticity
-The main poins are relatively simple. We run linear regression for each of the products, taking the sales and price over time as minimum input. Data sample can be found in the folder above. Function to run the lm for all SKUs in the typical sales csv file is shown below and in the r script above.
-Adding more variables impacting sales is more than great idea. Media spending, distribution, promotions, seasonal events. Bring them all in. They will only help your models and metrics. 
+The main points in calculating price elasticity are relatively simple.  
+We run linear regression for each of the products, taking the sales and price over time as minimum input. Using the formula provided we calculate the price elasticity. Below you can find a loop (could easily be transformed into function) running linear model and first calculations for all products in typical sales dataset.  
+  
+``` R
+# Run the model for each SKU in data frame
+for (i in sku_list) {
+  
+  # select columns only for one SKU in that iteration
+  input = df_casted %>%
+    select(str_subset(names(df_casted), i)) 
+  
+  # create model name and add it to the list to be used later
+  model_name = paste('model', i, sep = '_')
+  model_names = c(model_names, list(model_name))
+  
+  # run model for given SKU
+  model_iterated = lm(
+    as.formula(paste(colnames(input)[2], # 1 for value, 2 for units
+                     "~", paste(colnames(input)[3]))) # 3rd column for price
+    , data = input)
+  
+  # Add model object to the list and change the naming
+  models = c(models, list(model_iterated))
+  
+  # store the p value of the regular price for model validation
+  models_results[ i, 'model'] = model_name
+  models_results[ i, 'price_p_value'] = round(summary(model_iterated)$coefficients[8],6)
+  models_results[ i, 'price_coef'] = summary(model_iterated)$coefficients[2]
+  models_results[ i, 'mean_price'] = mean(input[[3]])
+  models_results[ i, 'mean_sales'] = mean(input[[2]])
+  
+}
+  ```
+  
+In addition we would need to add the final PE calculations to those outcomes. This could also easily be included into the main loop/function - was left out for clarity in this study.  
+``` R
+# Calculate the price elasticity value 
+# Mark the results as significant with cutoff on p value at 0.2
 
-INSERT CODE
-
-The price elasticity calculation is DEFINITION
-CODE EXAMPLE
-
+df_own_price_elasticity = models_results %>%
+  mutate(price_elasticity = price_coef * (mean_price / mean_sales),
+         significance = ifelse(price_p_value < 0.2, 'significant', 'not significant')) %>% # TODO properly adjust the condition here
+  arrange(desc(mean_sales))
+}
+  ```
+  
 Here we can see the output results. As mentioned before - depending of the model quality this should not be treated as a literal value of what will happen to our sales but they are a good indicator of price sensitive products
-
-INSERT CHART
-
-### Cross price elasticity
+  
+<p align="center">
+  <img src="https://github.com/MatCyt/Price_Elasticity_R/blob/master/charts/regular_elasticities.png" alt="Own Elasticity"
+       width="600" height="400">
+ </p>
+  
+### CROSS PRICE ELASTICITY
 What is cross price elascitity
 It can be helpful because you will see not only a own impact but how others impact your sales and how your pricing decisions impact other products. It is necessary to understand when you are stealing from your competitors and when you are cannibalizing your other products. And which exact products of your competitors you should observe closely
 
