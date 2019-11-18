@@ -1,7 +1,8 @@
 # Price_Elasticity_R
 Calculating regular and cross price elasticity for products based on weekly sales data
+  
 
-### DATA REQUIREMENTS
+## DATA REQUIREMENTS
 For most basic price elasticity study all you will need is data containing price and sales in time for a given product.  
 You can find a little more complex dataset in this repository (based on a real sales data of offline sales of several products for a small company).     
 Similar to typical sales for FMCG market the sales is reported on weekly level, both in value and volume.
@@ -11,7 +12,7 @@ The more variables describing sales you will add to the regression model, the mo
 To calculate cross price elasticities you will obviously need price points of other products (same manufacturer or of competitors).
 Knowing the regular and promo price will enable splitting the PE into two metrics bringing much more insights - described in the end
 
-### OVERVIEW
+## OVERVIEW
 The main aim of the pricing studies is to learn about past impact of the price on sales and based on this trying to adjust future actions. Price elasticity is one of the basic metrics to achieve this - since you are on this page you most likely are well aware of it.  
   
 But just to be on the same page on what exactly are we talking about: price elasticity is the measurement of price impact on sales. Simply speaking it is a value describing by how much percent your sales will change if you will increase your price by 1%. Price elasticity of -2 means that by increasing the price by one percent we will loose two percent in sales.  
@@ -24,12 +25,12 @@ In full pricing studies (like Nielsen one) we can deliver many more insights tha
 We can go through descriptive pricing overview (trends and architecture for each products), own and cross price elasticities and regular vs promo price elasticities. You will find them calculated or described below.  
   
 
-#### When to calculate it - selecting right products
+### When to calculate it - selecting right products
 Besides the regression significance output for a given variable we could in advance try to predict if given product is a good candidate for such study.  
 It should have a stable distribution over time, at least ~30 weeks of constant sales. Otherwise we just don't have enough observations.
 It should also have some variance in price over time. If the price was stable over past two years we won't be able to see any impact of changes on sales. There was simply no changes.
 
-#### Limitations
+### Limitations
 Due to limitations of regressions itself, price elasticity should not be treated in my opinion as a metric used to calculate exact price point for a given product or used for sales similations. In most cases, as you will see in the results below, the regression coefficients values are just too unstable to treat this output as a sacred truth.  
 With the right model validation and interpretation it could serve however as a good way to understand price sensitivity of our customers and identify products that potentially could benefit from price increase or decrease.  
   
@@ -40,10 +41,10 @@ http://www.cornerstonecapabilities.com/what-you-must-know-about-pricing-elastici
 Price trend - showing how the price varied across different products in a given time (any deep discounts? big price changes?)
 Price architecture - showing the variance of price across each SKU. This could be replaced by showing the regular, promo and average price if those values are known
 
-### DESCRIPTIVE ANALYSIS 
+## DESCRIPTIVE ANALYSIS 
 Code for all of the visualizations can be found in visualize_results.R  
   
-#### Price trend
+### Price trend
 This simple graph shows us price history across different products in a given time. We can easily see different price levels grouped across products, bigger discounts or regular price changes.  
   
 <p align="center">
@@ -52,7 +53,7 @@ This simple graph shows us price history across different products in a given ti
  </p>
   
     
-#### Price architecture
+### Price architecture
 Here we can see the price variance and range for a given SKU - this could be potentially replaced by showing the regular, promo and average price.
   
 <p align="center">
@@ -61,7 +62,7 @@ Here we can see the price variance and range for a given SKU - this could be pot
  </p>
   
     
-### Own price elasticity
+## OWN PRICE ELASTICITY
 The main points in calculating price elasticity are relatively simple.  
 We run linear regression for each of the products, taking the sales and price over time as minimum input. Using the formula provided we calculate the price elasticity. Below you can find a loop (could easily be transformed into function) running linear model and first calculations for all products in typical sales dataset.  
   
@@ -115,7 +116,7 @@ Here we can see the output results. As mentioned before - depending of the model
        width="600" height="400">
  </p>
   
-### CROSS PRICE ELASTICITY
+## CROSS PRICE ELASTICITY
 What is cross price elascitity
 It can be helpful because you will see not only a own impact but how others impact your sales and how your pricing decisions impact other products. It is necessary to understand when you are stealing from your competitors and when you are cannibalizing your other products. And which exact products of your competitors you should observe closely
 
@@ -129,13 +130,13 @@ Rows vs columns, how to interpret it
 INSERT CHART
 
 
-### Promo vs regular 
+## PROMO VS REGULAR PRICE 
 Missing and potential variables - promo price (what was it during discounts) vs regular (like here)
 We could break products into four groups identifying different pricing strategies
 
 DESCRIBE GROUPS
 
-### Materials
+## Materials
 Here you can find some links and materials I found usefull along the way:
 
 Code | Baseline - simple step by step price elasticity calculation with R:  
