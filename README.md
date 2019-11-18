@@ -2,17 +2,12 @@
 Calculating regular and cross price elasticity for products based on weekly sales data
 
 ### DATA REQUIREMENTS
-You can find a sample of the data (based on real sales dataset of small company).
-Typically offline sales for FMCG market will be reported on a weekly level.
-However to run a study like this you will need dataset containing price and sales in time for a given SKU.
-That is enough for a baseline.
-
-Sales can be expressed in volume, value or units. Choosing the metric depends mostly on the ease of interpretation and business goals.
-
-The more variables describing sales you will add to the regression model, the more reliable your price elasticity study will be.
-
+For most basic, regular own price elasticity study all you will need is data containing price and sales in time for a given product.
+You can find a little more complex dataset in this repository (based on a real sales data of offline sales of several products for a small company). Similar to typical sales for FMCG market the sales is reported on weekly level, both in value and volume.
+Sales can be expressed in volume, value or units. Choosing the metric depends mostly on the ease of interpretation and business goals.  
+  
+The more variables describing sales you will add to the regression model, the more reliable your price elasticity study will be. Adding more variables will also open completely new insights opportunities for you.
 To calculate cross price elasticities you will obviously need price points of other products (same manufacturer or of competitors).
-
 Knowing the regular and promo price will enable splitting the PE into two metrics bringing much more insights - described in the end
 
 ### Overview
