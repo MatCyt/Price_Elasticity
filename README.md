@@ -2,7 +2,7 @@
 Calculating regular and cross price elasticity for products based on weekly sales data
 
 ### DATA REQUIREMENTS
-For most basic, regular own price elasticity study all you will need is data containing price and sales in time for a given product.
+For most basic price elasticity study all you will need is data containing price and sales in time for a given product.  
 You can find a little more complex dataset in this repository (based on a real sales data of offline sales of several products for a small company). Similar to typical sales for FMCG market the sales is reported on weekly level, both in value and volume.
 Sales can be expressed in volume, value or units. Choosing the metric depends mostly on the ease of interpretation and business goals.  
   
@@ -92,17 +92,17 @@ DESCRIBE GROUPS
 ### Materials
 Here you can find some links and materials I found usefull along the way:
 
-Code | Baseline - simple step by step price elasticity calculation with R:
+Code | Baseline - simple step by step price elasticity calculation with R:  
 http://www.salemmarafi.com/code/price-elasticity-with-r/
 
-Code | Price elasticity in R with non-linear relations included:
+Code | Price elasticity in R with non-linear relations included:  
 https://www.r-bloggers.com/food-for-regression-using-sales-data-to-identify-price-elasticity/
 
-Theory | Price elasticity limitations and things to keep in mind during interpretation:
+Theory | Price elasticity limitations and things to keep in mind during interpretation:  
 http://www.cornerstonecapabilities.com/what-you-must-know-about-pricing-elasticity-and-the-danger-it-may-bring/
 
-Theory | Cross price elasticity and cannibalization
+Theory | Cross price elasticity and cannibalization:  
 https://www.ashokcharan.com/Marketing-Analytics/~pm-cannibalization.php
 
-Longer theory | Whole chapter on pricing studies and different method / models:
+Longer theory | Whole chapter on pricing studies and different method / models:  
 https://www.ashokcharan.com/Marketing-Analytics/~pr-what-price.php
